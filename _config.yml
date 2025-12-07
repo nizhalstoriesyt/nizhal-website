@@ -1,0 +1,5 @@
+title: NIZHAL Stories
+collections:
+  stories:
+    output: true
+    sort_by: date
