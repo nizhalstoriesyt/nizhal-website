@@ -1,12 +1,15 @@
 backend:
   name: github
-  repo: nizhalstoriesyt/nizhal-website # നിങ്ങളുടെ GitHub Repo കൃത്യമാണ്
+  repo: nizhalstoriesyt/nizhal-website # നിങ്ങളുടെ Repo Name
   branch: main
+  base_url: https://auth.sveltia.dev # ഇത് മാറ്റരുത്
+  auth_endpoint: /auth # ഇത് മാറ്റരുത്
+  app_id: Ov23liP2HfWInfkQjAcz # ⚠️ ഇവിടെ നിങ്ങളുടെ Client ID പേസ്റ്റ് ചെയ്യുക (Step 1-ൽ കിട്ടിയത്)
 
 media_folder: "uploads"
 public_folder: "/uploads"
 
-# Sveltia CMS Settings
+# Sveltia Settings
 site_url: "https://nizhalstoriesyt.github.io/nizhal-website"
 display_url: "https://nizhalstoriesyt.github.io/nizhal-website"
 
