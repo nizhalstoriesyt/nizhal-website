@@ -5,20 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NIZHAL | Archives Access</title>
   
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
   <style>
-    /* --- GLOBAL DARK THEME --- */
+    /* --- DARK THEME STYLES --- */
     body, html {
       background-color: #050505 !important;
       color: #e0e0e0 !important;
       font-family: 'Inter', sans-serif !important;
       margin: 0;
       height: 100vh;
-      overflow: hidden; /* Prevent scrolling on login page */
+      overflow: hidden;
     }
 
-    /* --- CUSTOM LOGIN PAGE OVERLAY --- */
+    /* Login Overlay */
     #login-overlay {
       position: fixed;
       top: 0;
@@ -29,33 +31,24 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 100; /* Lower z-index so Netlify popup appears on top */
+      z-index: 1000;
     }
 
     .login-card {
       background: #0a0a0a;
-      border: 1px solid #222;
+      border: 1px solid #333;
       padding: 50px 40px;
       width: 350px;
       text-align: center;
       border-radius: 8px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
     .login-card h1 {
       font-family: 'Playfair Display', serif;
       font-size: 2rem;
       color: #fff;
-      margin: 0 0 5px 0;
+      margin: 0 0 10px 0;
       letter-spacing: 2px;
-    }
-
-    .login-card p {
-      color: #666;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 30px;
     }
 
     .login-btn {
@@ -64,21 +57,14 @@
       border: none;
       padding: 15px 0;
       width: 100%;
-      font-weight: 600;
-      border-radius: 4px;
+      font-weight: bold;
       cursor: pointer;
-      transition: 0.3s;
-      text-transform: uppercase;
+      margin-top: 20px;
     }
 
-    .login-btn:hover {
-      background-color: #ccc;
-    }
-
-    /* --- DASHBOARD STYLES (Applies after login) --- */
-    div[class*="nc-app-root"] { font-family: 'Inter', sans-serif !important; }
+    .login-btn:hover { background-color: #ccc; }
     
-    /* Hide overlay when logged in */
+    /* Hide overlay class */
     .hidden { display: none !important; }
   </style>
 </head>
@@ -87,44 +73,31 @@
   <div id="login-overlay">
     <div class="login-card">
       <h1>NIZHAL</h1>
-      <p>Authorized Access Only</p>
-      <button class="login-btn" onclick="openPopup()">LOGIN TO DASHBOARD</button>
+      <p style="color: #666; font-size: 0.8rem; letter-spacing: 2px;">SECURE DASHBOARD ACCESS</p>
+      <button class="login-btn" onclick="netlifyIdentity.open()">LOGIN</button>
     </div>
   </div>
 
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
   <script>
-    // Initialize the widget immediately
+    // 1. Initialize Identity Widget
     if (window.netlifyIdentity) {
       window.netlifyIdentity.init();
     }
 
-    function openPopup() {
-      // Explicitly open the login popup
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.open();
-      } else {
-        alert("System loading... please wait a second and try again.");
-      }
+    // 2. Check if user is already logged in
+    const user = netlifyIdentity.currentUser();
+    
+    if (user) {
+      // If logged in, hide the login box immediately
+      document.getElementById('login-overlay').classList.add('hidden');
     }
 
-    // Check login status to hide/show the overlay
-    netlifyIdentity.on('init', user => {
-      if (user) {
-        document.getElementById('login-overlay').classList.add('hidden');
-      }
-    });
-
+    // 3. Listen for successful login
     netlifyIdentity.on('login', user => {
       document.getElementById('login-overlay').classList.add('hidden');
-      netlifyIdentity.close(); // Close popup after login
-    });
-
-    netlifyIdentity.on('logout', () => {
-      document.getElementById('login-overlay').classList.remove('hidden');
+      netlifyIdentity.close();
     });
   </script>
 
