@@ -7,34 +7,29 @@
   
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
   <style>
-    /* -----------------------------------------------------------
-       1. GLOBAL DARK THEME (BASE)
-    ----------------------------------------------------------- */
+    /* --- GLOBAL DARK THEME --- */
     body, html {
       background-color: #050505 !important;
       color: #e0e0e0 !important;
       font-family: 'Inter', sans-serif !important;
       margin: 0;
+      height: 100vh;
+      overflow: hidden; /* Prevent scrolling on login page */
     }
 
-    /* -----------------------------------------------------------
-       2. CUSTOM LOGIN PAGE (INSTAGRAM STYLE)
-       This covers the screen until you login
-    ----------------------------------------------------------- */
-    #custom-login-page {
+    /* --- CUSTOM LOGIN PAGE OVERLAY --- */
+    #login-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 100vh;
+      height: 100%;
       background-color: #000000;
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 9999; /* Stays on top */
+      z-index: 100; /* Lower z-index so Netlify popup appears on top */
     }
 
     .login-card {
@@ -67,110 +62,70 @@
       background-color: #ffffff;
       color: #000000;
       border: none;
-      padding: 12px 0;
+      padding: 15px 0;
       width: 100%;
       font-weight: 600;
       border-radius: 4px;
       cursor: pointer;
       transition: 0.3s;
+      text-transform: uppercase;
     }
 
     .login-btn:hover {
       background-color: #ccc;
     }
 
-    /* Hide custom login if verified */
-    .hidden {
-      display: none !important;
-    }
-
-    /* -----------------------------------------------------------
-       3. DASHBOARD UI CLEANUP (DARK MODE INJECTION)
-       Overrides Decap CMS default ugly styles
-    ----------------------------------------------------------- */
-    
-    /* Hide the default loading screen text to keep it clean */
+    /* --- DASHBOARD STYLES (Applies after login) --- */
     div[class*="nc-app-root"] { font-family: 'Inter', sans-serif !important; }
-
-    /* Top Header Bar */
-    header {
-      background-color: #000 !important;
-      border-bottom: 1px solid #222 !important;
-      color: #fff !important;
-    }
-
-    /* Sidebar (Left Menu) */
-    aside, div[class*="Sidebar"] {
-      background-color: #0a0a0a !important;
-      border-right: 1px solid #222 !important;
-    }
     
-    /* Sidebar Links */
-    a[class*="NavLink"] { color: #888 !important; }
-    a[class*="NavLink"].active {
-      background-color: #1a1a1a !important;
-      color: #fff !important;
-      border-left: 3px solid #fff !important;
-    }
-
-    /* Main Content Area */
-    main { background-color: #050505 !important; }
-
-    /* Cards (The Story List) */
-    div[class*="Card"] {
-      background-color: #111 !important;
-      border: 1px solid #222 !important;
-      color: #fff !important;
-      border-radius: 5px !important;
-    }
-    div[class*="Card"]:hover { border-color: #fff !important; }
-
-    /* Buttons inside Dashboard */
-    button {
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 0.8rem;
-    }
-    
-    /* Form Inputs (Editor) */
-    input, textarea, div[class*="Editor"] {
-      background-color: #111 !important;
-      border: 1px solid #333 !important;
-      color: #fff !important;
-    }
+    /* Hide overlay when logged in */
+    .hidden { display: none !important; }
   </style>
 </head>
 <body>
 
-  <div id="custom-login-page">
+  <div id="login-overlay">
     <div class="login-card">
       <h1>NIZHAL</h1>
       <p>Authorized Access Only</p>
-      <button class="login-btn" onclick="triggerLogin()">LOGIN TO DASHBOARD</button>
+      <button class="login-btn" onclick="openPopup()">LOGIN TO DASHBOARD</button>
     </div>
   </div>
 
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
   <script>
-    // Check if user is already logged in
-    const user = netlifyIdentity.currentUser();
-    const loginPage = document.getElementById('custom-login-page');
-
-    if (user) {
-      // User is logged in -> Hide custom page immediately
-      loginPage.classList.add('hidden');
-    } else {
-      // User is NOT logged in -> Keep custom page visible
-      netlifyIdentity.on('login', () => {
-        loginPage.classList.add('hidden'); // Hide on successful login
-        netlifyIdentity.close();
-      });
+    // Initialize the widget immediately
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.init();
     }
 
-    function triggerLogin() {
-      netlifyIdentity.open();
+    function openPopup() {
+      // Explicitly open the login popup
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.open();
+      } else {
+        alert("System loading... please wait a second and try again.");
+      }
     }
+
+    // Check login status to hide/show the overlay
+    netlifyIdentity.on('init', user => {
+      if (user) {
+        document.getElementById('login-overlay').classList.add('hidden');
+      }
+    });
+
+    netlifyIdentity.on('login', user => {
+      document.getElementById('login-overlay').classList.add('hidden');
+      netlifyIdentity.close(); // Close popup after login
+    });
+
+    netlifyIdentity.on('logout', () => {
+      document.getElementById('login-overlay').classList.remove('hidden');
+    });
   </script>
 
 </body>
