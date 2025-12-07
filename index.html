@@ -1,320 +1,147 @@
+---
+layout: null
+---
 <!DOCTYPE html>
 <html lang="ml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NIZHAL | നിഴൽ - Official Archives</title>
-    <link href="https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <title>NIZHAL | The Dark Archives</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&family=Noto+Sans+Malayalam:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* --- CORE THEME: BLACK & WHITE HORROR --- */
-        :root {
-            --bg-color: #000000;
-            --text-color: #ffffff;
-            --accent-gray: #333333;
-            --border-color: #ffffff;
-            --hover-glow: 0 0 15px rgba(255, 255, 255, 0.6);
-        }
-
+        /* --- DARK THEME --- */
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Manjari', sans-serif;
+            background-color: #050505;
+            color: #e0e0e0;
+            font-family: 'Inter', 'Noto Sans Malayalam', sans-serif;
             margin: 0;
             padding: 0;
-            line-height: 1.8;
-            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* --- NAVIGATION BAR --- */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 50px; /* Adjusted padding */
-            background-color: rgba(0, 0, 0, 0.95);
-            border-bottom: 1px solid var(--accent-gray);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
-
-        .logo-area {
-            /* Text removed, focusing on image centering */
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo-img {
-            height: 90px; /* INCREASED SIZE */
-            width: auto;
-            display: block;
-            filter: grayscale(100%) brightness(200%); /* Makes logo white */
-            transition: transform 0.3s;
-        }
-
-        .logo-img:hover {
-            transform: scale(1.05); /* Slight zoom on hover */
-            filter: grayscale(100%) brightness(250%) drop-shadow(0 0 5px #fff);
-        }
-
-        .nav-links a {
-            color: #aaa;
-            text-decoration: none;
-            margin-left: 35px;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: #fff;
-            text-shadow: var(--hover-glow);
-            border-bottom: 2px solid #fff;
-        }
-
-        /* --- RADIO SECTION --- */
-        .radio-section {
-            background: radial-gradient(circle at center, #1a1a1a, #000);
-            border-bottom: 1px solid var(--accent-gray);
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .radio-label {
-            font-size: 0.9rem;
-            letter-spacing: 4px;
-            color: #ff0000;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            display: inline-block;
-            border: 1px solid #ff0000;
-            padding: 5px 15px;
-            border-radius: 50px;
-            animation: pulse 2s infinite;
-        }
-
-        /* --- CONTAINER --- */
+        /* Container */
         .container {
-            max-width: 1000px;
+            max-width: 700px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 20px;
         }
 
-        /* --- HEADINGS --- */
-        h1, h2 {
+        /* Header */
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 1px solid #222;
+            margin-bottom: 40px;
+        }
+        .logo {
+            width: 120px;
+            opacity: 0.8;
+        }
+        h1 {
             font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 25px;
-            border-left: 5px solid #fff;
-            padding-left: 20px;
-            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 10px;
+            color: #fff;
         }
 
-        /* --- DETAILED STORY SECTION --- */
-        .story-post {
-            background: #080808;
-            padding: 50px;
+        /* --- STORY CARD (NEWS FEED STYLE) --- */
+        .story-card {
+            background-color: #0e0e0e;
             border: 1px solid #222;
-            margin-bottom: 60px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.8);
-        }
-
-        .story-meta {
-            color: #555;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            margin-bottom: 25px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        .story-content {
-            font-size: 1.15rem;
-            color: #ccc;
-            text-align: justify;
-        }
-
-        /* --- AUDIOBOOKS GRID --- */
-        .audio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 60px;
-        }
-
-        .audio-card {
-            background: #0a0a0a;
-            border: 1px solid #333;
+            border-radius: 8px;
             padding: 25px;
-            transition: 0.4s;
-            position: relative;
-            overflow: hidden;
+            margin-bottom: 30px;
+            transition: transform 0.2s;
+        }
+        .story-card:hover {
+            border-color: #444;
         }
 
-        .audio-card:hover {
-            border-color: #fff;
-            transform: translateY(-5px);
-            box-shadow: var(--hover-glow);
-        }
-
-        .audio-title {
-            font-size: 1.3rem;
-            font-family: 'Playfair Display', serif;
-            display: block;
-            margin-bottom: 5px;
-            color: #fff;
-        }
-
-        /* --- GAME BUTTONS --- */
-        .game-choice-btn {
-            background: transparent;
-            color: #fff;
-            border: 1px solid #fff;
-            padding: 15px 40px;
-            margin: 15px 15px 0 0;
-            cursor: pointer;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            transition: 0.3s;
+        .story-date {
+            color: #666;
+            font-size: 0.8rem;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
         }
 
-        .game-choice-btn:hover {
-            background: #fff;
-            color: #000;
-            font-weight: bold;
+        .story-title {
+            font-family: 'Noto Sans Malayalam', serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin: 0 0 15px 0;
+            line-height: 1.4;
         }
 
-        /* --- FOOTER --- */
+        .story-body {
+            color: #ccc;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            white-space: pre-wrap; /* Keeps paragraph spacing */
+        }
+
+        /* Custom Audio Player Style */
+        audio {
+            width: 100%;
+            height: 40px;
+            margin-top: 10px;
+            filter: invert(1) hue-rotate(180deg); /* Dark Mode Player */
+            border-radius: 4px;
+        }
+
+        /* Footer */
         footer {
             text-align: center;
-            padding: 50px;
-            border-top: 1px solid var(--accent-gray);
+            padding: 50px 0;
             color: #444;
             font-size: 0.8rem;
-            background: #050505;
-        }
-
-        /* Animations */
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .navbar { flex-direction: column; padding: 20px; }
-            .logo-img { height: 70px; margin-bottom: 15px; } /* Slightly smaller on mobile */
-            .nav-links a { margin: 0 10px; font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo-area">
-            <img src="logo.png" alt="NIZHAL LOGO" class="logo-img">
-        </div>
-        <div class="nav-links">
-            <a href="#home" class="active">Home</a>
-            <a href="#stories">Stories</a>
-            <a href="#audiobooks">Audiobooks</a>
-        </div>
-    </nav>
-
-    <section class="radio-section">
-        <span class="radio-label">● LIVE SIGNAL</span>
-        <h3 style="margin-top: 10px; font-weight: normal; font-family: 'Playfair Display', serif;">Nizhal Radio: The Unknown Frequency</h3>
-        <audio controls autoplay loop style="width: 100%; max-width: 600px; filter: invert(1);">
-            <source src="radio.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-    </section>
-
     <div class="container">
+        <header>
+            <img src="logo.png" alt="NIZHAL" class="logo" onerror="this.style.display='none'">
+            <h1>NIZHAL</h1>
+            <p style="color: #666; letter-spacing: 3px;">THE ARCHIVES</p>
+            
+            <div style="margin-top: 20px; padding: 10px; background: #111; border-radius: 5px;">
+                <p style="margin:0 0 5px 0; font-size: 0.7rem; color: red;">● LIVE RADIO</p>
+                <audio controls loop>
+                    <source src="radio.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+        </header>
 
-        <section id="stories">
-            <h2>Latest Case File</h2>
-            <div class="story-post">
-                <div class="story-meta">
-                    CASE #001 | LOCATION: NANTHANCODE | STATUS: UNSOLVED
-                </div>
-                <h3>നാന്തൻകോട്: മരണത്തിന്റെ പരീക്ഷണം</h3>
-                <div class="story-content">
-                    <p>
-                        തിരുവനന്തപുരത്തിന്റെ ഹൃദയഭാഗത്ത്... ആരും ശ്രദ്ധിക്കാതെ പോയ ഒരു വീട്. പുറമെ ശാന്തം... എന്നാൽ അകത്ത് നടന്നത് കൊലപാതകമായിരുന്നില്ല... ഒരു പരീക്ഷണമായിരുന്നു.
-                    </p>
-                    <p>
-                        കാഡൽ ജീൻസൻ രാജ എന്ന യുവാവ് തന്റെ കുടുംബത്തെ കൊലപ്പെടുത്തിയത് വെറുമൊരു പകയുടെ പുറത്തല്ല. ആസ്ട്രൽ പ്രൊജക്ഷൻ (Astral Projection) എന്ന നിഗൂഢമായ വിദ്യ പരീക്ഷിക്കാൻ വേണ്ടിയായിരുന്നു അത്. ആത്മാവ് ശരീരത്തിൽ നിന്നും വേർപെടുന്ന അവസ്ഥ... അവൻ വിശ്വസിച്ചിരുന്നത് ആത്മാവ് ശരീരം വിട്ട് പോയി തിരിച്ചുവരുമെന്നായിരുന്നു.
-                    </p>
-                    <p>
-                        രാത്രികളിൽ ആ വീട്ടിൽ നിന്നും കേട്ടിരുന്ന വിചിത്രമായ ശബ്ദങ്ങൾ അയൽവാസികൾ ഇന്നും ഓർക്കുന്നു...
-                    </p>
+        <div id="stories-feed">
+            {% for story in site.stories reversed %}
+                <div class="story-card">
+                    <span class="story-date">{{ story.date | date: "%B %d, %Y" }}</span>
+                    <h2 class="story-title">{{ story.title }}</h2>
                     
-                    <hr style="border-color: #333; margin: 40px 0;">
-                    
-                    <h4 style="color: #fff; border-left: 3px solid #ff0000; padding-left: 10px;">INTERACTIVE ARCHIVE: MAKE YOUR CHOICE</h4>
-                    <p id="game-text">നിങ്ങൾ ഇപ്പോൾ ആ വീടിന്റെ ഗെയിറ്റിന് മുൻപിൽ നിൽക്കുകയാണ്. സമയം രാത്രി 2 മണി. അകത്ത് നിന്നും ഒരു നിലവിളി കേൾക്കുന്നു.</p>
-                    <div id="game-options">
-                        <button class="game-choice-btn" onclick="playGame(1)">ഗേറ്റ് തുറന്ന് അകത്ത് കയറുക</button>
-                        <button class="game-choice-btn" onclick="playGame(2)">പോലീസിനെ വിളിക്കുക</button>
+                    {% if story.audio %}
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 0.8rem; color: #888;">🎧 Listen to Evidence:</span>
+                        <audio controls>
+                            <source src="{{ story.audio }}" type="audio/mpeg">
+                        </audio>
+                    </div>
+                    {% endif %}
+
+                    <div class="story-body">
+                        {{ story.content }}
                     </div>
                 </div>
-            </div>
-        </section>
+            {% endfor %}
+        </div>
 
-        <section id="audiobooks">
-            <h2>Audiobook Archives</h2>
-            <p style="color: #888; margin-bottom: 30px;">Access restricted audio files.</p>
-            
-            <div class="audio-grid">
-                <div class="audio-card">
-                    <span class="audio-title">FILE 001: The House</span>
-                    <p style="font-size: 0.8rem; color: #555;">Nanthencode | 03:00 mins</p>
-                    <audio controls style="width: 100%; margin-top: 15px; filter: invert(1);">
-                        <source src="YOUR_AUDIO_LINK_1.mp3" type="audio/mpeg">
-                    </audio>
-                </div>
-
-                <div class="audio-card">
-                    <span class="audio-title">FILE 002: Cyanide</span>
-                    <p style="font-size: 0.8rem; color: #555;">Koodathayi | 04:12 mins</p>
-                    <audio controls style="width: 100%; margin-top: 15px; filter: invert(1);">
-                        <source src="YOUR_AUDIO_LINK_2.mp3" type="audio/mpeg">
-                    </audio>
-                </div>
-            </div>
-        </section>
-
+        <footer>
+            NIZHAL STORIES &copy; 2025
+        </footer>
     </div>
 
-    <footer>
-        <p>&copy; 2025 NIZHAL. Unforgettable Stories Forever.</p>
-    </footer>
-
-    <script>
-        // JavaScript for the Mini Game
-        function playGame(choice) {
-            const textElement = document.getElementById('game-text');
-            const optionsElement = document.getElementById('game-options');
-
-            if (choice === 1) {
-                textElement.innerHTML = "നിങ്ങൾ ധൈര്യമായി അകത്ത് കയറി. വീടിന്റെ മുൻവാതിൽ തുറന്നു കിടക്കുന്നു. അകത്ത് നിന്നും കമ്പ്യൂട്ടർ കീബോർഡിൽ ടൈപ്പ് ചെയ്യുന്ന ശബ്ദം കേൾക്കാം...";
-                optionsElement.innerHTML = '<button class="game-choice-btn">ശബ്ദം കേൾക്കുന്ന മുറിയിലേക്ക് പോവുക</button>';
-            } else {
-                textElement.innerHTML = "നിങ്ങൾ ഫോൺ എടുത്തു. പക്ഷെ സിഗ്നൽ ഇല്ല! പെട്ടെന്ന് നിങ്ങളുടെ പിന്നിൽ ഒരു കൈ വന്നു പതിച്ചു!";
-                optionsElement.innerHTML = '<button class="game-choice-btn" onclick="location.reload()">TRY AGAIN</button>';
-            }
-        }
-    </script>
-
 </body>
-
 </html>
