@@ -1,124 +1,38 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NIZHAL | Classified Access</title>
+  <title>NIZHAL | Admin Dashboard</title>
   
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-
+  
   <style>
-    /* --- DESIGN: PURE BLACK & WHITE --- */
+    /* Force Dark Background */
     body {
-      margin: 0;
-      padding: 0;
-      background-color: #000000; /* Deep Black */
-      color: #ffffff;
-      font-family: 'Inter', sans-serif;
-      height: 100vh;
+      background-color: #0e0e0e !important;
+      color: #fff !important;
+    }
+    /* Style the Login Page Area */
+    div[class*="nc-app-root"] {
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
-
-    /* The Login Card (Center Box) */
-    #login-gate {
-      background-color: #050505;
-      border: 1px solid #222; /* Subtle border */
-      padding: 50px 40px;
-      width: 100%;
-      max-width: 350px;
-      text-align: center;
-      border-radius: 8px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    }
-
-    /* Logo Text */
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      letter-spacing: 3px;
-      margin: 0 0 10px 0;
-      color: #fff;
-    }
-
-    p.subtitle {
-      color: #666;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 40px;
-    }
-
-    /* The Button */
-    button.login-btn {
-      background-color: #ffffff;
-      color: #000000;
-      border: none;
-      padding: 15px 0;
-      width: 100%;
-      font-size: 0.9rem;
-      font-weight: 600;
+    /* Style the Login Button */
+    button {
+      background-color: #fff !important;
+      color: #000 !important;
+      border: none !important;
+      padding: 10px 20px !important;
+      font-weight: bold;
       border-radius: 4px;
       cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    button.login-btn:hover {
-      background-color: #e0e0e0;
-      transform: translateY(-1px);
-    }
-
-    /* Hide the CMS until logged in */
-    #nc-root {
-      display: none; 
     }
   </style>
 </head>
 <body>
-
-  <div id="login-gate">
-    <h1>NIZHAL</h1>
-    <p class="subtitle">Admin Archives</p>
-    <button class="login-btn" onclick="openLogin()">ACCESS DASHBOARD</button>
-  </div>
-
-  <script>
-    function openLogin() {
-      netlifyIdentity.open();
-    }
-
-    // Check if user is already logged in
-    if (netlifyIdentity.currentUser()) {
-      // User is logged in: Hide login card, Show CMS
-      document.getElementById('login-gate').style.display = 'none';
-      loadCMS();
-    } else {
-      // User is NOT logged in: Listen for login event
-      netlifyIdentity.on('login', user => {
-        document.getElementById('login-gate').style.display = 'none';
-        loadCMS();
-        netlifyIdentity.close(); // Close the popup
-      });
-    }
-
-    function loadCMS() {
-      // Inject Decap CMS Script dynamically
-      const script = document.createElement('script');
-      script.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
-      document.body.appendChild(script);
-      
-      // Inject Dark Theme Style for Internal CMS
-      const style = document.createElement('style');
-      style.innerHTML = `
-        body { background-color: #111 !important; } 
-        div[class*="AppContainer"] { background-color: #111 !important; }
-      `;
-      document.head.appendChild(style);
-    }
-  </script>
-
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html>
