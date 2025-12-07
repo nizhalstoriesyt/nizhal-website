@@ -3,101 +3,129 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NIZHAL | Archives Access</title>
+  <title>NIZHAL | Admin Access</title>
   
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
   <style>
-    /* --- DARK THEME STYLES --- */
+    /* --- STYLES --- */
     body, html {
-      background-color: #050505 !important;
-      color: #e0e0e0 !important;
-      font-family: 'Inter', sans-serif !important;
       margin: 0;
+      padding: 0;
       height: 100vh;
-      overflow: hidden;
+      background-color: #000000; /* Pure Black */
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
     }
 
     /* Login Overlay */
-    #login-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #000000;
+    #login-gate {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      height: 100%;
+      width: 100%;
+      position: fixed;
       z-index: 1000;
+      background-color: #000;
     }
 
-    .login-card {
-      background: #0a0a0a;
+    .login-box {
       border: 1px solid #333;
-      padding: 50px 40px;
-      width: 350px;
+      padding: 50px;
+      width: 320px;
       text-align: center;
-      border-radius: 8px;
+      border-radius: 4px;
     }
 
-    .login-card h1 {
+    .login-box h1 {
       font-family: 'Playfair Display', serif;
       font-size: 2rem;
-      color: #fff;
       margin: 0 0 10px 0;
       letter-spacing: 2px;
     }
 
-    .login-btn {
+    .login-box p {
+      color: #666;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 30px;
+    }
+
+    /* Button */
+    #login-btn {
       background-color: #ffffff;
       color: #000000;
       border: none;
-      padding: 15px 0;
+      padding: 15px;
       width: 100%;
-      font-weight: bold;
+      font-weight: 600;
       cursor: pointer;
-      margin-top: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: 0.3s;
     }
 
-    .login-btn:hover { background-color: #ccc; }
-    
-    /* Hide overlay class */
-    .hidden { display: none !important; }
+    #login-btn:hover {
+      background-color: #ccc;
+    }
+
+    /* Dark Theme for CMS (Injected later) */
+    div[class*="nc-app-root"] { background-color: #000 !important; }
   </style>
 </head>
 <body>
 
-  <div id="login-overlay">
-    <div class="login-card">
+  <div id="login-gate">
+    <div class="login-box">
       <h1>NIZHAL</h1>
-      <p style="color: #666; font-size: 0.8rem; letter-spacing: 2px;">SECURE DASHBOARD ACCESS</p>
-      <button class="login-btn" onclick="netlifyIdentity.open()">LOGIN</button>
+      <p>Restricted Archives</p>
+      <button id="login-btn">LOGIN TO DASHBOARD</button>
     </div>
   </div>
 
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
   <script>
-    // 1. Initialize Identity Widget
+    // A. Initialize Identity Widget
     if (window.netlifyIdentity) {
       window.netlifyIdentity.init();
     }
 
-    // 2. Check if user is already logged in
-    const user = netlifyIdentity.currentUser();
-    
-    if (user) {
-      // If logged in, hide the login box immediately
-      document.getElementById('login-overlay').classList.add('hidden');
+    const loginBtn = document.getElementById('login-btn');
+    const loginGate = document.getElementById('login-gate');
+
+    // B. Button Click Action
+    loginBtn.addEventListener('click', () => {
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.open();
+      } else {
+        alert("System loading... please wait.");
+      }
+    });
+
+    // C. Function to Load CMS (Runs ONLY after login)
+    function loadDecapCMS() {
+      loginGate.style.display = 'none'; // Hide login box
+      
+      // Inject CMS script dynamically
+      const script = document.createElement('script');
+      script.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
+      document.body.appendChild(script);
     }
 
-    // 3. Listen for successful login
-    netlifyIdentity.on('login', user => {
-      document.getElementById('login-overlay').classList.add('hidden');
-      netlifyIdentity.close();
+    // D. Check Login Status
+    // If already logged in:
+    if (window.netlifyIdentity && window.netlifyIdentity.currentUser()) {
+      loadDecapCMS();
+    }
+
+    // If logging in just now:
+    window.netlifyIdentity.on('login', user => {
+      window.netlifyIdentity.close();
+      loadDecapCMS();
     });
   </script>
 
