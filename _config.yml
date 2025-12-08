@@ -1,5 +1,5 @@
 title: NIZHAL
-baseurl: "/nizhal-website" # ലിങ്കുകൾ ശരിയാകാൻ ഇത് അത്യാവശ്യമാണ്
+baseurl: "/nizhal-website"
 url: "https://nizhalstoriesyt.github.io"
 
 theme: minima
@@ -9,3 +9,11 @@ collections:
   stories:
     output: true
     sort_by: date
+
+# ⚠️ ഈ ഭാഗമാണ് പുതിയതായി ചേർത്തത് (Layout Connection)
+defaults:
+  - scope:
+      path: ""
+      type: "stories"
+    values:
+      layout: "story"
