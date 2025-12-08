@@ -20,12 +20,12 @@ layout: null
             text-align: center;
         }
 
-        /* --- NAVIGATION BAR (NEW) --- */
+        /* --- NAVIGATION BAR --- */
         nav {
             background-color: #0a0a0a;
             border-bottom: 1px solid #222;
             padding: 15px 0;
-            position: sticky; /* സ്ക്രോൾ ചെയ്യുമ്പോൾ മുകളിൽ തന്നെ നിൽക്കും */
+            position: sticky;
             top: 0;
             z-index: 1000;
         }
@@ -45,9 +45,6 @@ layout: null
             color: #ffffff;
             text-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
-
-        /* Active Tab Style */
-        .active-tab { color: #fff; border-bottom: 1px solid #fff; padding-bottom: 5px; }
 
         /* --- HEADER & LOGO --- */
         header { padding: 40px 20px; }
@@ -109,7 +106,7 @@ layout: null
     <nav>
         <a href="#stories">STORIES</a>
         <a href="#audio">AUDIO BOOKS</a>
-        <a href="game.html" style="color: #ff3333;">GAMES 🎮</a>
+        <a href="{{ '/game.html' | relative_url }}" style="color: #ff3333;">GAMES 🎮</a>
     </nav>
 
     <header>
@@ -120,7 +117,7 @@ layout: null
     <div id="audio" class="radio-box">
         <div class="live-indicator">● LIVE RADIO STREAM</div>
         <audio class="main-radio" controls loop>
-            <source src="radio.mp3" type="audio/mpeg">
+            <source src="{{ 'radio.mp3' | relative_url }}" type="audio/mpeg">
         </audio>
     </div>
 
@@ -137,13 +134,13 @@ layout: null
                 {% if story.audio %}
                 <div style="margin-bottom: 15px; border: 1px dashed #333; padding: 5px;">
                     <span style="font-size: 0.7rem; color: #888;">🎧 Audio Book Available</span>
-                    <audio style="width: 100%; height: 25px; filter: invert(1);" controls src="{{ story.audio }}"></audio>
+                    <audio style="width: 100%; height: 25px; filter: invert(1);" controls src="{{ story.audio | relative_url }}"></audio>
                 </div>
                 {% endif %}
 
                 <div class="story-content">
                     {{ story.content | truncatewords: 25 }}... <br>
-                    <a class="read-more" href="{{ story.url }}">Read Full Story</a>
+                    <a class="read-more" href="{{ story.url | relative_url }}">Read Full Story</a>
                 </div>
             </div>
         {% endfor %}
@@ -158,11 +155,12 @@ layout: null
             let taps = 0;
             function secretAccess() {
                 taps++;
-                if (taps === 5) { // 5 തവണ ക്ലിക്ക് ചെയ്താൽ
-                    window.location.href = "admin/"; // അഡ്മിൻ പാനലിലേക്ക് പോകും
+                if (taps === 5) {
+                    window.location.href = "{{ '/admin/' | relative_url }}";
                 }
-                // 2 സെക്കൻഡ് അനങ്ങാതെ ഇരുന്നാൽ കൗണ്ട് റീസെറ്റ് ആകും
                 setTimeout(() => { taps = 0; }, 2000);
             }
         </script>
     </footer>
+</body>
+</html>
