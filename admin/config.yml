@@ -11,7 +11,7 @@ public_folder: "/uploads"
 
 # Sveltia Settings
 site_url: "https://nizhalstoriesyt.github.io/nizhal-website"
-display_url: "https://nizhalstoriesyt.github.io/nizhal-website"
+logo_url: "https://nizhalstoriesyt.github.io/nizhal-website/logo.png"
 
 collections:
   - name: "stories"
