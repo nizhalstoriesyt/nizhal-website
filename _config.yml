@@ -1,11 +1,10 @@
 title: NIZHAL
-baseurl: "/nizhal-website" # ഇത് വളരെ പ്രധാനമാണ്
+baseurl: "/nizhal-website" # ലിങ്കുകൾ ശരിയാകാൻ ഇത് അത്യാവശ്യമാണ്
 url: "https://nizhalstoriesyt.github.io"
 
-# 1. ഭാവിയിലെ ഡേറ്റ് ആണെങ്കിലും സ്റ്റോറി കാണിക്കാൻ:
+theme: minima
 future: true
 
-# 2. സ്റ്റോറികൾ വെബ്സൈറ്റിൽ എത്തിക്കാൻ:
 collections:
   stories:
     output: true
