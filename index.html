@@ -10,69 +10,75 @@ layout: null
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 1. OLD DESIGN RESTORED (BASIC THEME) --- */
+        /* --- GLOBAL THEME --- */
         body {
             background-color: #000000;
             color: #ffffff;
             font-family: 'Inter', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             text-align: center;
         }
 
-        /* Logo & Header Area */
-        header {
-            margin-bottom: 40px;
-            padding-top: 20px;
+        /* --- NAVIGATION BAR (NEW) --- */
+        nav {
+            background-color: #0a0a0a;
+            border-bottom: 1px solid #222;
+            padding: 15px 0;
+            position: sticky; /* സ്ക്രോൾ ചെയ്യുമ്പോൾ മുകളിൽ തന്നെ നിൽക്കും */
+            top: 0;
+            z-index: 1000;
         }
+        
+        nav a {
+            color: #888;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        /* Active Tab Style */
+        .active-tab { color: #fff; border-bottom: 1px solid #fff; padding-bottom: 5px; }
+
+        /* --- HEADER & LOGO --- */
+        header { padding: 40px 20px; }
         
         .logo-text {
             font-family: 'Playfair Display', serif;
             font-size: 3rem;
             letter-spacing: 5px;
             margin: 0;
-            text-transform: uppercase;
         }
         
-        .tagline {
-            color: #666;
-            font-size: 0.8rem;
-            letter-spacing: 3px;
-            margin-top: 5px;
-            text-transform: uppercase;
-        }
+        .tagline { color: #666; font-size: 0.8rem; letter-spacing: 3px; margin-top: 5px; text-transform: uppercase; }
 
-        /* --- 2. RADIO SECTION (FIXED AT TOP) --- */
+        /* --- RADIO SECTION --- */
         .radio-box {
             border: 1px solid #333;
-            background: #0a0a0a;
+            background: #050505;
             padding: 20px;
-            max-width: 500px;
-            margin: 30px auto;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+            max-width: 400px;
+            margin: 0 auto 40px auto;
+            border-radius: 8px;
         }
-
-        .live-indicator {
-            color: #ff0000;
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            animation: blink 2s infinite;
-        }
-
+        .live-indicator { color: red; font-size: 0.7rem; letter-spacing: 2px; animation: blink 2s infinite; }
         @keyframes blink { 50% { opacity: 0.5; } }
+        audio.main-radio { width: 100%; margin-top: 15px; filter: invert(1); }
 
-        audio.main-radio {
-            width: 100%;
-            margin-top: 15px;
-            filter: invert(1); /* Makes player white/dark */
-        }
-
-        /* --- 3. NEW STORIES SECTION (THE ARCHIVES) --- */
-        .archives-title {
+        /* --- CONTENT SECTION --- */
+        .section-title {
             border-bottom: 1px solid #333;
             max-width: 600px;
-            margin: 50px auto 30px auto;
+            margin: 30px auto;
             padding-bottom: 10px;
             color: #444;
             letter-spacing: 2px;
@@ -80,101 +86,65 @@ layout: null
         }
 
         .story-card {
-            background-color: #080808;
+            background-color: #0a0a0a;
             border: 1px solid #222;
             max-width: 600px;
             margin: 0 auto 20px auto;
             padding: 25px;
             text-align: left;
             border-radius: 5px;
-            transition: 0.3s;
         }
-
-        .story-card:hover {
-            border-color: #555;
-            background-color: #0e0e0e;
-        }
-
-        .story-date {
-            color: #555;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .story-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            margin: 0 0 10px 0;
-            color: #e0e0e0;
-        }
-
-        .story-content {
-            font-size: 0.95rem;
-            color: #bbb;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            white-space: pre-wrap;
-        }
-
-        .story-audio {
-            width: 100%;
-            height: 30px;
-            filter: invert(1);
-            opacity: 0.7;
-        }
+        .story-card:hover { border-color: #555; }
         
-        .listen-label {
-            font-size: 0.7rem; 
-            color: #666; 
-            display: block; 
-            margin-bottom: 5px;
-        }
+        .story-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin: 0 0 10px 0; color: #e0e0e0; }
+        .story-content { font-size: 0.9rem; color: #bbb; line-height: 1.6; }
+        
+        a.read-more { color: #fff; font-size: 0.8rem; text-decoration: underline; margin-top: 10px; display: inline-block;}
 
-        /* Footer */
-        footer {
-            margin-top: 50px;
-            color: #333;
-            font-size: 0.7rem;
-        }
+        footer { margin-top: 50px; padding: 20px; color: #333; font-size: 0.7rem; }
     </style>
 </head>
 <body>
+
+    <nav>
+        <a href="#stories">STORIES</a>
+        <a href="#audio">AUDIO BOOKS</a>
+        <a href="game.html" style="color: #ff3333;">GAMES 🎮</a>
+    </nav>
 
     <header>
         <h1 class="logo-text">NIZHAL</h1>
         <p class="tagline">The Unknown Frequency</p>
     </header>
 
-    <div class="radio-box">
-        <div class="live-indicator">● LIVE SIGNAL</div>
+    <div id="audio" class="radio-box">
+        <div class="live-indicator">● LIVE RADIO STREAM</div>
         <audio class="main-radio" controls loop>
             <source src="radio.mp3" type="audio/mpeg">
         </audio>
     </div>
 
-    <div class="archives-title">RECENT CASE FILES</div>
+    <div id="stories" class="section-title">LATEST ARCHIVES</div>
 
     <div class="stories-container">
         {% for story in site.stories reversed %}
             <div class="story-card">
-                <span class="story-date">{{ story.date | date: "%B %d, %Y" }}</span>
+                <span style="color:#555; font-size:0.7rem; display:block; margin-bottom:5px;">
+                    {{ story.date | date: "%B %d, %Y" }}
+                </span>
                 <h2 class="story-title">{{ story.title }}</h2>
                 
-                <div class="story-content">
-                    {{ story.content | truncatewords: 30 }}... <br>
-                    <a href="{{ story.url }}" style="color: #fff; font-size: 0.8rem; text-decoration: underline;">Read Full Case</a>
-                </div>
-
                 {% if story.audio %}
-                <div style="margin-top: 15px;">
-                    <span class="listen-label">AUDIO EVIDENCE:</span>
-                    <audio class="story-audio" controls>
-                        <source src="{{ story.audio }}" type="audio/mpeg">
-                    </audio>
+                <div style="margin-bottom: 15px; border: 1px dashed #333; padding: 5px;">
+                    <span style="font-size: 0.7rem; color: #888;">🎧 Audio Book Available</span>
+                    <audio style="width: 100%; height: 25px; filter: invert(1);" controls src="{{ story.audio }}"></audio>
                 </div>
                 {% endif %}
+
+                <div class="story-content">
+                    {{ story.content | truncatewords: 25 }}... <br>
+                    <a class="read-more" href="{{ story.url }}">Read Full Story</a>
+                </div>
             </div>
         {% endfor %}
     </div>
