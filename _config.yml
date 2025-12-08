@@ -1,19 +1,22 @@
 title: NIZHAL
-description: The Unknown Frequency
+email: your-email@domain.com
+description: >- # this means to ignore newlines until "baseurl:"
+  The Unknown Frequency
 
-# 1. Theme Setting (This is the fix)
-theme: jekyll-theme-minimal
+# 1. THEME FIX (ഏറ്റവും പ്രധാനപ്പെട്ടത്)
+# പഴയ theme എറർ വരാതിരിക്കാൻ നമ്മൾ ഡിഫോൾട്ട് തീം ഉപയോഗിക്കുന്നു
+theme: minima
 
-# 2. Allow future posts (Timezone fix)
-future: true 
+# 2. TIMEZONE FIX (ഇതാണ് സ്റ്റോറി വരാത്തതിന്റെ കാരണം)
+# ഭാവിയിലെ ഡേറ്റ് ആണെങ്കിലും കാണിക്കാൻ പറയുന്നു
+future: true
+timezone: Asia/Kolkata
 
-# 3. Setup the Stories Collection
+# 3. COLLECTIONS SETUP (ഫോൾഡർ കണക്ട് ചെയ്യുന്നു)
 collections:
   stories:
     output: true
     sort_by: date
-    permalink: /stories/:year/:month/:day/:title/
 
-# 4. Plugins
-plugins:
-  - jekyll-feed
+# 4. BUILD SETTINGS
+markdown: kramdown
