@@ -2,146 +2,186 @@
 layout: null
 ---
 <!DOCTYPE html>
-<html lang="ml">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NIZHAL | The Dark Archives</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&family=Noto+Sans+Malayalam:wght@400;700&display=swap" rel="stylesheet">
+    <title>NIZHAL | The Unknown Frequency</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* --- DARK THEME --- */
+        /* --- 1. OLD DESIGN RESTORED (BASIC THEME) --- */
         body {
-            background-color: #050505;
-            color: #e0e0e0;
-            font-family: 'Inter', 'Noto Sans Malayalam', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
             margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-
-        /* Container */
-        .container {
-            max-width: 700px;
-            margin: 0 auto;
             padding: 20px;
-        }
-
-        /* Header */
-        header {
             text-align: center;
-            padding: 40px 0;
-            border-bottom: 1px solid #222;
-            margin-bottom: 40px;
-        }
-        .logo {
-            width: 120px;
-            opacity: 0.8;
-        }
-        h1 {
-            font-family: 'Playfair Display', serif;
-            letter-spacing: 2px;
-            margin-top: 10px;
-            color: #fff;
         }
 
-        /* --- STORY CARD (NEWS FEED STYLE) --- */
-        .story-card {
-            background-color: #0e0e0e;
-            border: 1px solid #222;
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 30px;
-            transition: transform 0.2s;
+        /* Logo & Header Area */
+        header {
+            margin-bottom: 40px;
+            padding-top: 20px;
         }
+        
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            letter-spacing: 5px;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        
+        .tagline {
+            color: #666;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        /* --- 2. RADIO SECTION (FIXED AT TOP) --- */
+        .radio-box {
+            border: 1px solid #333;
+            background: #0a0a0a;
+            padding: 20px;
+            max-width: 500px;
+            margin: 30px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+        }
+
+        .live-indicator {
+            color: #ff0000;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0.5; } }
+
+        audio.main-radio {
+            width: 100%;
+            margin-top: 15px;
+            filter: invert(1); /* Makes player white/dark */
+        }
+
+        /* --- 3. NEW STORIES SECTION (THE ARCHIVES) --- */
+        .archives-title {
+            border-bottom: 1px solid #333;
+            max-width: 600px;
+            margin: 50px auto 30px auto;
+            padding-bottom: 10px;
+            color: #444;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+
+        .story-card {
+            background-color: #080808;
+            border: 1px solid #222;
+            max-width: 600px;
+            margin: 0 auto 20px auto;
+            padding: 25px;
+            text-align: left;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
         .story-card:hover {
-            border-color: #444;
+            border-color: #555;
+            background-color: #0e0e0e;
         }
 
         .story-date {
-            color: #666;
-            font-size: 0.8rem;
+            color: #555;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
             display: block;
+            margin-bottom: 8px;
         }
 
         .story-title {
-            font-family: 'Noto Sans Malayalam', serif;
-            font-size: 1.5rem;
-            color: #fff;
-            margin: 0 0 15px 0;
-            line-height: 1.4;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin: 0 0 10px 0;
+            color: #e0e0e0;
         }
 
-        .story-body {
-            color: #ccc;
-            font-size: 1rem;
-            margin-bottom: 20px;
-            white-space: pre-wrap; /* Keeps paragraph spacing */
+        .story-content {
+            font-size: 0.95rem;
+            color: #bbb;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            white-space: pre-wrap;
         }
 
-        /* Custom Audio Player Style */
-        audio {
+        .story-audio {
             width: 100%;
-            height: 40px;
-            margin-top: 10px;
-            filter: invert(1) hue-rotate(180deg); /* Dark Mode Player */
-            border-radius: 4px;
+            height: 30px;
+            filter: invert(1);
+            opacity: 0.7;
+        }
+        
+        .listen-label {
+            font-size: 0.7rem; 
+            color: #666; 
+            display: block; 
+            margin-bottom: 5px;
         }
 
         /* Footer */
         footer {
-            text-align: center;
-            padding: 50px 0;
-            color: #444;
-            font-size: 0.8rem;
+            margin-top: 50px;
+            color: #333;
+            font-size: 0.7rem;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <img src="logo.png" alt="NIZHAL" class="logo" onerror="this.style.display='none'">
-            <h1>NIZHAL</h1>
-            <p style="color: #666; letter-spacing: 3px;">THE ARCHIVES</p>
-            
-            <div style="margin-top: 20px; padding: 10px; background: #111; border-radius: 5px;">
-                <p style="margin:0 0 5px 0; font-size: 0.7rem; color: red;">● LIVE RADIO</p>
-                <audio controls loop>
-                    <source src="radio.mp3" type="audio/mpeg">
-                </audio>
-            </div>
-        </header>
+    <header>
+        <h1 class="logo-text">NIZHAL</h1>
+        <p class="tagline">The Unknown Frequency</p>
+    </header>
 
-        <div id="stories-feed">
-            {% for story in site.stories reversed %}
-                <div class="story-card">
-                    <span class="story-date">{{ story.date | date: "%B %d, %Y" }}</span>
-                    <h2 class="story-title">{{ story.title }}</h2>
-                    
-                    {% if story.audio %}
-                    <div style="margin-bottom: 15px;">
-                        <span style="font-size: 0.8rem; color: #888;">🎧 Listen to Evidence:</span>
-                        <audio controls>
-                            <source src="{{ story.audio }}" type="audio/mpeg">
-                        </audio>
-                    </div>
-                    {% endif %}
-
-                    <div class="story-body">
-                        {{ story.content }}
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-
-        <footer>
-            NIZHAL STORIES &copy; 2025
-        </footer>
+    <div class="radio-box">
+        <div class="live-indicator">● LIVE SIGNAL</div>
+        <audio class="main-radio" controls loop>
+            <source src="radio.mp3" type="audio/mpeg">
+        </audio>
     </div>
+
+    <div class="archives-title">RECENT CASE FILES</div>
+
+    <div class="stories-container">
+        {% for story in site.stories reversed %}
+            <div class="story-card">
+                <span class="story-date">{{ story.date | date: "%B %d, %Y" }}</span>
+                <h2 class="story-title">{{ story.title }}</h2>
+                
+                <div class="story-content">
+                    {{ story.content | truncatewords: 30 }}... <br>
+                    <a href="{{ story.url }}" style="color: #fff; font-size: 0.8rem; text-decoration: underline;">Read Full Case</a>
+                </div>
+
+                {% if story.audio %}
+                <div style="margin-top: 15px;">
+                    <span class="listen-label">AUDIO EVIDENCE:</span>
+                    <audio class="story-audio" controls>
+                        <source src="{{ story.audio }}" type="audio/mpeg">
+                    </audio>
+                </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <footer>
+        NIZHAL ARCHIVES © 2025
+    </footer>
 
 </body>
 </html>
