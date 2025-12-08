@@ -1,4 +1,6 @@
-title: NIZHAL Stories
+title: NIZHAL
+description: The Dark Audio Archives
+theme: jekyll-theme-prime
 collections:
   stories:
     output: true
