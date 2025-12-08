@@ -1,22 +1,12 @@
 title: NIZHAL
-email: your-email@domain.com
-description: >- # this means to ignore newlines until "baseurl:"
-  The Unknown Frequency
+baseurl: "/nizhal-website" # ഇത് വളരെ പ്രധാനമാണ്
+url: "https://nizhalstoriesyt.github.io"
 
-# 1. THEME FIX (ഏറ്റവും പ്രധാനപ്പെട്ടത്)
-# പഴയ theme എറർ വരാതിരിക്കാൻ നമ്മൾ ഡിഫോൾട്ട് തീം ഉപയോഗിക്കുന്നു
-theme: minima
-
-# 2. TIMEZONE FIX (ഇതാണ് സ്റ്റോറി വരാത്തതിന്റെ കാരണം)
-# ഭാവിയിലെ ഡേറ്റ് ആണെങ്കിലും കാണിക്കാൻ പറയുന്നു
+# 1. ഭാവിയിലെ ഡേറ്റ് ആണെങ്കിലും സ്റ്റോറി കാണിക്കാൻ:
 future: true
-timezone: Asia/Kolkata
 
-# 3. COLLECTIONS SETUP (ഫോൾഡർ കണക്ട് ചെയ്യുന്നു)
+# 2. സ്റ്റോറികൾ വെബ്സൈറ്റിൽ എത്തിക്കാൻ:
 collections:
   stories:
     output: true
     sort_by: date
-
-# 4. BUILD SETTINGS
-markdown: kramdown
