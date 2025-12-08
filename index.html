@@ -149,9 +149,20 @@ layout: null
         {% endfor %}
     </div>
 
-    <footer>
-        NIZHAL ARCHIVES © 2025
-    </footer>
+   <footer>
+        <span onclick="secretAccess()" style="cursor: default; user-select: none;">
+            NIZHAL ARCHIVES © 2025
+        </span>
 
-</body>
-</html>
+        <script>
+            let taps = 0;
+            function secretAccess() {
+                taps++;
+                if (taps === 5) { // 5 തവണ ക്ലിക്ക് ചെയ്താൽ
+                    window.location.href = "admin/"; // അഡ്മിൻ പാനലിലേക്ക് പോകും
+                }
+                // 2 സെക്കൻഡ് അനങ്ങാതെ ഇരുന്നാൽ കൗണ്ട് റീസെറ്റ് ആകും
+                setTimeout(() => { taps = 0; }, 2000);
+            }
+        </script>
+    </footer>
