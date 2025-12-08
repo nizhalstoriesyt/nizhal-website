@@ -1,18 +1,19 @@
 title: NIZHAL
 description: The Unknown Frequency
 
-# 1. This enables viewing stories even if time is slightly ahead
+# 1. Theme Setting (This is the fix)
+theme: jekyll-theme-minimal
+
+# 2. Allow future posts (Timezone fix)
 future: true 
 
-# 2. Setup the Stories Collection properly
+# 3. Setup the Stories Collection
 collections:
   stories:
     output: true
     sort_by: date
     permalink: /stories/:year/:month/:day/:title/
 
-# 3. Build Settings
-markdown: kramdown
-theme: jekyll-theme-prime
+# 4. Plugins
 plugins:
   - jekyll-feed
