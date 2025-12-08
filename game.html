@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIZHAL | Interactive Game</title>
+    <style>
+        body { background-color: #000; color: #fff; font-family: monospace; text-align: center; padding: 50px; }
+        h1 { color: red; letter-spacing: 5px; }
+        .box { border: 1px solid #333; padding: 30px; max-width: 500px; margin: 0 auto; }
+        button { background: #111; color: #fff; border: 1px solid #fff; padding: 10px 20px; cursor: pointer; margin: 10px; }
+        button:hover { background: #fff; color: #000; }
+        a { color: #666; text-decoration: none; margin-top: 30px; display: block; }
+    </style>
+</head>
+<body>
+    <h1>THE DARK CHOICE</h1>
+    <div class="box">
+        <p id="story-text">നിങ്ങൾ ഒരു പഴയ ബംഗ്ലാവിന്റെ മുന്നിൽ നിൽക്കുന്നു. വാതിൽ തുറന്നു കിടക്കുന്നു...</p>
+        <button onclick="choice1()">അകത്തേക്ക് കയറുക</button>
+        <button onclick="choice2()">തിരികെ ഓടുക</button>
+    </div>
+    <a href="index.html">← Back to Home</a>
+
+    <script>
+        function choice1() {
+            document.getElementById("story-text").innerText = "അകത്ത് കൂരിരുട്ടാണ്... പെട്ടെന്ന് ഒരു നിലവിളി കേട്ടു!";
+            document.querySelector("button:nth-of-type(1)").style.display = "none";
+            document.querySelector("button:nth-of-type(2)").innerText = "വിളക്ക് കത്തിക്കുക";
+        }
+        function choice2() {
+            document.getElementById("story-text").innerText = "നിങ്ങൾ ഓടി രക്ഷപ്പെട്ടു! പക്ഷേ ആ രൂപം നിങ്ങളുടെ പിന്നാലെയുണ്ട്...";
+        }
+    </script>
+</body>
+</html>
