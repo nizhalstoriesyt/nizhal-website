@@ -16,7 +16,7 @@ display_url: "https://nizhalstoriesyt.github.io/nizhal-website"
 collections:
   - name: "stories"
     label: "Stories"
-    folder: "stories"
+    folder: "_stories"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
