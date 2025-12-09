@@ -20,13 +20,11 @@ collections:
     label: "Stories"
     folder: "_stories"
     create: true
-    # 👇 ഫയലിന്റെ പേര് ഇംഗ്ലീഷിൽ ആക്കാൻ
     slug: "{{year}}-{{month}}-{{day}}-{{url_name}}"
     fields:
       - label: "Title (Malayalam)"
         name: "title"
         widget: "string"
-      # 👇 പുതിയ ഓപ്ഷൻ: ഇവിടെ ഇംഗ്ലീഷ് പേര് കൊടുക്കുക
       - label: "URL Name (English - for Link)"
         name: "url_name"
         widget: "string"
@@ -34,7 +32,12 @@ collections:
       - label: "Publish Date"
         name: "date"
         widget: "datetime"
-      # 👇 ഓഡിയോ പഴയത് പോലെ തന്നെ വർക്ക് ചെയ്യും
+      # 👇 പുതിയ മാറ്റം: കവർ ഫോട്ടോ അപ്‌ലോഡ് ചെയ്യാൻ
+      - label: "Cover Image"
+        name: "image"
+        widget: "image"
+        required: false
+        hint: "കഥയ്ക്ക് അനുയോജ്യമായ ഒരു ചിത്രം അപ്‌ലോഡ് ചെയ്യുക"
       - label: "Audio Upload"
         name: "audio"
         widget: "file"
@@ -42,7 +45,6 @@ collections:
       - label: "Story Body"
         name: "body"
         widget: "markdown"
-      # 👇 ഗെയിം ചോയിസുകളും ഇവിടെ തന്നെയുണ്ട്
       - label: "Game Choice A"
         name: "choice_a"
         widget: "string"
