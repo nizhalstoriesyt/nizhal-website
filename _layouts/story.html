@@ -22,7 +22,7 @@
         .container {
             max-width: 700px;
             margin: 0 auto;
-            text-align: left; /* Story alignment */
+            text-align: left;
         }
 
         h1 { 
@@ -61,16 +61,14 @@
             outline: none;
         }
 
-        /* Story Text - Chilanka Font Applied Here */
+        /* Story Text - Chilanka Font */
         .content {
-            font-size: 1.3rem; /* കൈപ്പട ഫോണ്ട് ആയതുകൊണ്ട് വലിപ്പം കൂട്ടി */
+            font-size: 1.3rem;
             color: #ccc;
             white-space: pre-wrap;
-            
-            /* 👇 Chilanka Font Settings */
-            font-family: 'Chilanka', cursive;
+            font-family: 'Chilanka', cursive; /* Malayalam Font */
             font-weight: 400;
-            line-height: 2; /* വായന സുഖമാക്കാൻ വരികൾക്കിടയിൽ ഗ്യാപ്പ് കൂട്ടി */
+            line-height: 2;
         }
         
         /* Links */
@@ -103,7 +101,7 @@
         <div class="audio-box">
             <span style="font-size: 0.8rem; color: #888;">🎧 EVIDENCE AUDIO RECORDING</span>
             <audio controls>
-                <source src="{{ page.audio }}" type="audio/mpeg">
+                <source src="{{ page.audio | relative_url }}" type="audio/mpeg">
             </audio>
         </div>
         {% endif %}
