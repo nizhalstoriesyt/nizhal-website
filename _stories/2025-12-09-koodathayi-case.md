@@ -2,6 +2,7 @@
 title: 'മരണത്തിന്റെ നിലവിളി: കോട്ടയം കൂട്ടക്കൊലയുടെ ഉള്ളറകൾ'
 url_name: koodathayi-case
 date: 2025-12-09T10:24:00
+image: /uploads/Gemini_Generated_Image_f0yyydf0yyydf0yy.png
 audio: /uploads/download (4).wav
 choice_a: ''
 choice_b: ''
