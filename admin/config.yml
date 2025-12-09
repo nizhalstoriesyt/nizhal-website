@@ -2,19 +2,19 @@ backend:
   name: github
   repo: nizhalstoriesyt/nizhal-website
   branch: main
-  base_url: https://auth.sveltia.dev
-  auth_endpoint: /auth
+  base_url: "https://auth.sveltia.dev"
+  auth_endpoint: "/auth"
   app_id: Ov23liP2HfWInfkQjAcz
 
 media_folder: "uploads"
 public_folder: "/uploads"
 
-# Sveltia Settings
+# Site Settings
 site_url: "https://nizhalstoriesyt.github.io/nizhal-website"
 display_url: "https://nizhalstoriesyt.github.io/nizhal-website"
-# Logo Settings
 logo_url: "https://nizhalstoriesyt.github.io/nizhal-website/logo.png"
 
+# Collections
 collections:
   - name: "stories"
     label: "Stories"
@@ -22,9 +22,24 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Audio Upload", name: "audio", widget: "file", required: false}
-      - {label: "Story Body", name: "body", widget: "markdown"}
-      - {label: "Game Choice A", name: "choice_a", widget: "string", required: false}
-      - {label: "Game Choice B", name: "choice_b", widget: "string", required: false}
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Publish Date"
+        name: "date"
+        widget: "datetime"
+      - label: "Audio Upload"
+        name: "audio"
+        widget: "file"
+        required: false
+      - label: "Story Body"
+        name: "body"
+        widget: "markdown"
+      - label: "Game Choice A"
+        name: "choice_a"
+        widget: "string"
+        required: false
+      - label: "Game Choice B"
+        name: "choice_b"
+        widget: "string"
+        required: false
