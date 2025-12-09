@@ -1,12 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="ml"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }} | NIZHAL</title>
+    <title>{{ page.title }} | NIZHAL Archives</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Chilanka&display=swap" rel="stylesheet">
     
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "{{ page.title }}",
+      "datePublished": "{{ page.date | date_to_xmlschema }}",
+      "dateModified": "{{ page.date | date_to_xmlschema }}",
+      "author": [{
+          "@type": "Person",
+          "name": "Nizhal Team",
+          "url": "{{ site.url }}"
+      }],
+      "publisher": {
+          "@type": "Organization",
+          "name": "NIZHAL Archives",
+          "logo": {
+              "@type": "ImageObject",
+              "url": "{{ site.url }}{{ site.baseurl }}/logo.png"
+          }
+      },
+      "description": "{{ page.content | strip_html | strip_newlines | truncate: 160 }}",
+      "inLanguage": "ml-IN", 
+      "articleBody": "{{ content | strip_html | strip_newlines }}"
+    }
+    </script>
+
     <style>
         /* --- DARK THEME STYLES --- */
         body { 
@@ -66,7 +92,7 @@
             font-size: 1.3rem;
             color: #ccc;
             white-space: pre-wrap;
-            font-family: 'Chilanka', cursive; /* Malayalam Font */
+            font-family: 'Chilanka', cursive; /* Malayalam Font maintained */
             font-weight: 400;
             line-height: 2;
         }
