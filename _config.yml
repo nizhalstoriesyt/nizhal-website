@@ -1,16 +1,32 @@
-title: NIZHAL
+title: NIZHAL | Malayalam Crime & Horror Stories
+email: contact@nizhal.io
+description: >-
+  Discover gripping real-life crime stories and atmospheric horror fiction in Malayalam.
+  കേരളത്തിലെ ഏറ്റവും മികച്ച കുറ്റാന്വേഷണ കഥകളും പ്രേത കഥകളും ഇവിടെ വായിക്കാം.
 baseurl: "/nizhal-website"
 url: "https://nizhalstoriesyt.github.io"
+lang: ml # സൈറ്റ് മലയാളത്തിലാണെന്ന് ഗൂഗിളിനെ അറിയിക്കുന്നു
 
+# Theme
 theme: minima
-future: true
 
+# Plugins used for SEO (PDF Plan)
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
+# Other Settings
+future: true
+timezone: Asia/Kolkata
+
+# Collections Setup
 collections:
   stories:
     output: true
     sort_by: date
 
-# ⚠️ ഈ ഭാഗമാണ് പുതിയതായി ചേർത്തത് (Layout Connection)
+# Defaults (Connects Stories to Layout)
 defaults:
   - scope:
       path: ""
