@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ml"> <head>
+<html lang="ml">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }} | NIZHAL Archives</title>
@@ -12,107 +13,28 @@
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": "{{ page.title }}",
+      "image": "{{ site.url }}{{ site.baseurl }}{{ page.image }}",
       "datePublished": "{{ page.date | date_to_xmlschema }}",
-      "dateModified": "{{ page.date | date_to_xmlschema }}",
-      "author": [{
-          "@type": "Person",
-          "name": "Nizhal Team",
-          "url": "{{ site.url }}"
-      }],
-      "publisher": {
-          "@type": "Organization",
-          "name": "NIZHAL Archives",
-          "logo": {
-              "@type": "ImageObject",
-              "url": "{{ site.url }}{{ site.baseurl }}/logo.png"
-          }
-      },
-      "description": "{{ page.content | strip_html | strip_newlines | truncate: 160 }}",
-      "inLanguage": "ml-IN", 
-      "articleBody": "{{ content | strip_html | strip_newlines }}"
+      "author": { "@type": "Person", "name": "Nizhal Team" },
+      "description": "{{ page.content | strip_html | truncate: 160 }}"
     }
     </script>
 
     <style>
-        /* --- DARK THEME STYLES --- */
-        body { 
-            background-color: #000000; 
-            color: #e0e0e0; 
-            font-family: 'Inter', sans-serif; 
-            margin: 0; 
-            padding: 20px; 
-            line-height: 1.8;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: left;
-        }
-
-        h1 { 
-            font-family: 'Playfair Display', serif; 
-            color: #ffffff; 
-            font-size: 2.2rem; 
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .meta-info {
-            color: #666;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            text-align: center;
-            display: block;
-            margin-bottom: 30px;
-            letter-spacing: 2px;
-        }
-
-        /* Audio Player Box */
-        .audio-box {
-            background: #0a0a0a;
-            border: 1px solid #333;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        audio { 
-            width: 100%; 
-            height: 40px; 
-            filter: invert(1); 
-            margin-top: 10px;
-            outline: none;
-        }
-
-        /* Story Text - Chilanka Font */
-        .content {
-            font-size: 1.3rem;
-            color: #ccc;
-            white-space: pre-wrap;
-            font-family: 'Chilanka', cursive; /* Malayalam Font maintained */
-            font-weight: 400;
-            line-height: 2;
-        }
+        body { background-color: #000; color: #e0e0e0; font-family: 'Inter', sans-serif; margin: 0; padding: 20px; text-align: center; }
+        .container { max-width: 700px; margin: 0 auto; text-align: left; }
+        h1 { font-family: 'Playfair Display', serif; color: #fff; font-size: 2.2rem; margin-bottom: 10px; text-align: center; }
+        .meta-info { color: #666; font-size: 0.8rem; text-transform: uppercase; text-align: center; display: block; margin-bottom: 20px; letter-spacing: 2px; }
         
-        /* Links */
+        /* Cover Image Style */
+        .cover-image { width: 100%; height: auto; border-radius: 8px; margin-bottom: 30px; border: 1px solid #333; }
+        
+        .audio-box { background: #0a0a0a; border: 1px solid #333; padding: 15px; border-radius: 8px; margin-bottom: 30px; text-align: center; }
+        audio { width: 100%; height: 40px; filter: invert(1); margin-top: 10px; }
+        .content { font-size: 1.3rem; color: #ccc; white-space: pre-wrap; font-family: 'Chilanka', cursive; line-height: 2; }
         a { color: #fff; text-decoration: underline; }
-
-        /* Back Button */
-        .back-btn { 
-            display: inline-block; 
-            margin-top: 50px; 
-            color: #888; 
-            text-decoration: none; 
-            border: 1px solid #333; 
-            padding: 10px 20px; 
-            border-radius: 5px; 
-            transition: 0.3s;
-        }
+        .back-btn { display: inline-block; margin-top: 50px; color: #888; text-decoration: none; border: 1px solid #333; padding: 10px 20px; border-radius: 5px; transition: 0.3s; }
         .back-btn:hover { background: #fff; color: #000; }
-        
         footer { margin-top: 50px; color: #444; font-size: 0.8rem; text-align: center; }
     </style>
 </head>
@@ -122,28 +44,25 @@
         <small class="meta-info">CASE FILE: {{ page.date | date: "%B %d, %Y" }}</small>
         
         <h1>{{ page.title }}</h1>
+
+        {% if page.image %}
+        <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="cover-image">
+        {% endif %}
         
         {% if page.audio %}
         <div class="audio-box">
             <span style="font-size: 0.8rem; color: #888;">🎧 EVIDENCE AUDIO RECORDING</span>
-            <audio controls>
-                <source src="{{ page.audio | relative_url }}" type="audio/mpeg">
-            </audio>
+            <audio controls><source src="{{ page.audio | relative_url }}" type="audio/mpeg"></audio>
         </div>
         {% endif %}
 
-        <div class="content">
-            {{ content }}
-        </div>
+        <div class="content">{{ content }}</div>
 
         <div style="text-align: center;">
             <a href="{{ site.baseurl }}/" class="back-btn">← RETURN TO ARCHIVES</a>
         </div>
     </div>
 
-    <footer>
-        NIZHAL ARCHIVES © 2025
-    </footer>
-
+    <footer>NIZHAL ARCHIVES © 2025</footer>
 </body>
 </html>
